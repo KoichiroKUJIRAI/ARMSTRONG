@@ -13,7 +13,7 @@ float loweringThreshold = 100;
 float grabbingThreshold = 100;
 
 // Length of delay between each commands
-int delayTime = 1000;
+int delayTime = 10;
 
 // Parameters for controlling body movement
 int bodyMovingSpeed = 100;
