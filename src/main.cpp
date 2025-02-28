@@ -23,7 +23,7 @@ void setup()
 {
   Serial.begin(115200);
   handMotorInit();
-  // yMotorInit();
+  yMotorInit();
   zMotorInit();
   bodyMotorInit();
 }
