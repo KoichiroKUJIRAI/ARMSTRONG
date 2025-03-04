@@ -9,8 +9,8 @@
 
 // Pins for Stepping Motor of y-axis conveying
 #define yMotorPin1 26
-#define yMotorPin2 27
-#define yMotorPin3 14
+#define yMotorPin2 14
+#define yMotorPin3 27
 #define yMotorPin4 12
 
 #define LEDredPin 26
@@ -231,6 +231,15 @@ void step(int steps_to_move, long whatSpeed, int number_of_steps)
     {
         direction = 0;
     }
+    Serial.print("direction is ");
+    if (direction)
+    {
+        Serial.println("positive");
+    }
+    else
+    {
+        Serial.println("negative");
+    }
     // decrement the number of steps, moving one step each time:
     while (steps_left > 0)
     {
@@ -262,6 +271,7 @@ void step(int steps_to_move, long whatSpeed, int number_of_steps)
             steps_left--;
             // step the motor to step number 0, 1, ..., {3 or 10}
             stepMotor(step_number % 4);
+            delay(1);
         }
     }
 }
