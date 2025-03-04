@@ -183,7 +183,7 @@ void stepStepper(int step)
     digitalWrite(yMotorPin4, LOW);
 }
 
-void stepMotor(int thisstep)
+void stepMotor(int thisStep)
 {
     switch (thisStep)
     {
