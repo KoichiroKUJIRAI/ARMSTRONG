@@ -33,7 +33,7 @@ unsigned long grabbingTime = 0;
 
 void loop()
 {
-  stepStepper(180);
+  step(180, 50, 180);
   delay(200);
   // loweringTime = lowerArm(loweringThreshold, loweringSpeed);
   // delay(delayTime);

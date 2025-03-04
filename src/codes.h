@@ -18,6 +18,8 @@ void moveHandMotor(int time, int speed);
 void movezMotor(int time, int speed);
 void moveBodyMotor(int time, int speed);
 void stepStepper(int step);
+void stepMotor(int thisStep);
+void step(int steps_to_move, long whatSpeed, int number_of_steps);
 
 // Mission sequence commands
 unsigned long grabDomino(float threshold, int speed);
