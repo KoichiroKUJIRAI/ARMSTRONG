@@ -31,26 +31,26 @@ void setup()
 unsigned long loweringTime = 0;
 unsigned long grabbingTime = 0;
 
-#define pin 12
-
 void loop()
 {
-  loweringTime = lowerArm(loweringThreshold, loweringSpeed);
-  delay(delayTime);
-  grabbingTime = grabDomino(grabbingThreshold, grabbingSpeed);
-  delay(delayTime);
-  movezMotor(loweringTime, -loweringSpeed);
-  delay(delayTime);
-  stepStepper(yMotorStep);
-  delay(delayTime);
-  loweringTime = lowerArm(loweringThreshold, loweringSpeed);
-  delay(delayTime);
-  moveHandMotor(grabbingTime, -grabbingSpeed);
-  delay(delayTime);
-  movezMotor(loweringTime, -loweringSpeed);
-  delay(delayTime);
-  stepStepper(-yMotorStep);
-  delay(delayTime);
-  moveBodyMotor(bodyMovingTime, bodyMovingSpeed);
-  delay(delayTime);
+  stepStepper(180);
+  delay(200);
+  // loweringTime = lowerArm(loweringThreshold, loweringSpeed);
+  // delay(delayTime);
+  // grabbingTime = grabDomino(grabbingThreshold, grabbingSpeed);
+  // delay(delayTime);
+  // movezMotor(loweringTime, -loweringSpeed);
+  // delay(delayTime);
+  // stepStepper(yMotorStep);
+  // delay(delayTime);
+  // loweringTime = lowerArm(loweringThreshold, loweringSpeed);
+  // delay(delayTime);
+  // moveHandMotor(grabbingTime, -grabbingSpeed);
+  // delay(delayTime);
+  // movezMotor(loweringTime, -loweringSpeed);
+  // delay(delayTime);
+  // stepStepper(-yMotorStep);
+  // delay(delayTime);
+  // moveBodyMotor(bodyMovingTime, bodyMovingSpeed);
+  // delay(delayTime);
 }

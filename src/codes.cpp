@@ -183,6 +183,37 @@ void stepStepper(int step)
     digitalWrite(yMotorPin4, LOW);
 }
 
+void stepMotor(int thisstep)
+{
+    switch (thisStep)
+    {
+    case 0: // 1010
+        digitalWrite(yMotorPin1, HIGH);
+        digitalWrite(yMotorPin2, LOW);
+        digitalWrite(yMotorPin3, HIGH);
+        digitalWrite(yMotorPin4, LOW);
+        break;
+    case 1: // 0110
+        digitalWrite(yMotorPin1, LOW);
+        digitalWrite(yMotorPin2, HIGH);
+        digitalWrite(yMotorPin3, HIGH);
+        digitalWrite(yMotorPin4, LOW);
+        break;
+    case 2: // 0101
+        digitalWrite(yMotorPin1, LOW);
+        digitalWrite(yMotorPin2, HIGH);
+        digitalWrite(yMotorPin3, LOW);
+        digitalWrite(yMotorPin4, HIGH);
+        break;
+    case 3: // 1001
+        digitalWrite(yMotorPin1, HIGH);
+        digitalWrite(yMotorPin2, LOW);
+        digitalWrite(yMotorPin3, LOW);
+        digitalWrite(yMotorPin4, HIGH);
+        break;
+    }
+}
+
 // Mission sequence commands
 unsigned long grabDomino(float threshold, int speed)
 {
