@@ -152,8 +152,8 @@ void movezMotor(int time, int speed)
         digitalWrite(zMotorDgtPin2, HIGH);
     }
     delay(time);
-    digitalWrite(zMotorDgtPin1, LOW);
-    digitalWrite(zMotorDgtPin2, LOW);
+    // digitalWrite(zMotorDgtPin1, LOW);
+    // digitalWrite(zMotorDgtPin2, LOW);
 }
 
 void moveBodyMotor(int time, int speed)
@@ -170,8 +170,8 @@ void moveBodyMotor(int time, int speed)
         digitalWrite(bodyMotorDgtPin2, HIGH);
     }
     delay(time);
-    digitalWrite(zMotorDgtPin1, LOW);
-    digitalWrite(zMotorDgtPin2, LOW);
+    digitalWrite(bodyMotorDgtPin1, LOW);
+    digitalWrite(bodyMotorDgtPin2, LOW);
 }
 
 void stepStepper(int step)
