@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <ESP32Servo.h>
 #include <stepper.h>
 #include "codes.h"
 
@@ -35,7 +34,7 @@ unsigned long grabbingTime = 0;
 
 void loop()
 {
-  movezMotor(200, 3700);
+  step(540, yMotorSpeed, yMotorTotalStep);
   delay(delayTime);
   // moveHandMotor(500, grabbingSpeed);
   // delay(delayTime);
