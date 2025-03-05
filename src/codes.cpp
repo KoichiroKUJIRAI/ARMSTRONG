@@ -120,10 +120,10 @@ void showhandSensorValue(float threshold, float period)
 }
 
 // Motor commands
-void moveHandMotor(int time, int speed)
+void moveHandMotor(int time, int voltage)
 {
-    analogWrite(handMotorAnlPin, speed);
-    if (speed >= 0)
+    analogWrite(handMotorAnlPin, voltage * 4095 * 0.2);
+    if (voltage >= 0)
     {
         digitalWrite(handMotorDgtPin1, HIGH);
         digitalWrite(handMotorDgtPin2, LOW);

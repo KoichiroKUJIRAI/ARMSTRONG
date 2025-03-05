@@ -14,7 +14,7 @@ void showzSensorValue(float threshold, float period);
 void showhandSensorValue(float threshold, float period);
 
 // Motor commands
-void moveHandMotor(int time, int speed);
+void moveHandMotor(int time, int voltage);
 void movezMotor(int time, int speed);
 void moveBodyMotor(int time, int speed);
 void stepStepper(int step);

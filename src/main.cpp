@@ -6,16 +6,16 @@
 // Parameters for controling arm movements
 int yMotorStep = 540;
 int yMotorTotalStep = 180;
-int yMotorSpeed = 50;
+int yMotorSpeed = 100;
 int loweringSpeed = 500;
-int grabbingSpeed = 800;
+int grabbingVoltage = 2.5;
 
 // Sensor thresholds
 float loweringThreshold = 100;
 float grabbingThreshold = 50;
 
 // Length of delay between each commands
-int delayTime = 100;
+int delayTime = 500;
 
 // Parameters for controlling body movement
 int bodyMovingSpeed = 100;
@@ -35,9 +35,9 @@ unsigned long grabbingTime = 0;
 
 void loop()
 {
-  step(540, yMotorSpeed, yMotorTotalStep);
+  moveHandMotor(500, grabbingVoltage);
   delay(delayTime);
-  step(-540, yMotorSpeed, yMotorTotalStep);
+  moveHandMotor(500, -grabbingVoltage);
   delay(delayTime);
   // moveHandMotor(500, grabbingSpeed);
   // delay(delayTime);
