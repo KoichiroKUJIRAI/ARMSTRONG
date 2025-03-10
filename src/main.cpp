@@ -7,14 +7,14 @@ int yMotorStep = 540;
 int yMotorTotalStep = 180;
 int yMotorSpeed = 100;
 int loweringSpeed = 500;
-int grabbingVoltage = 5;
+int grabbingVoltage = 3;
 
 // Sensor thresholds
-float loweringThreshold = 100;
-float grabbingThreshold = 50;
+float loweringThreshold = 1;
+float grabbingThreshold = 1;
 
 // Length of delay between each commands
-int delayTime = 300;
+int delayTime = 500;
 
 // Parameters for controlling body movement
 int bodyMovingSpeed = 100;
@@ -34,26 +34,20 @@ unsigned long grabbingTime = 0;
 
 void loop()
 {
-  moveBodyMotor(500, 4095);
-  delay(delayTime);
-  moveBodyMotor(500, -4095);
-  delay(delayTime);
-  // moveHandMotor(500, grabbingSpeed);
-  // delay(delayTime);
-  // moveHandMotor(500, -grabbingSpeed);
-  // delay(delayTime);
   // loweringTime = lowerArm(loweringThreshold, loweringSpeed);
   // delay(delayTime);
-  // grabbingTime = grabDomino(grabbingThreshold, grabbingSpeed);
-  // delay(delayTime);
+  Serial.println("Grabbing");
+  grabDomino(grabbingThreshold, grabbingVoltage);
+  delay(delayTime);
   // movezMotor(loweringTime, -loweringSpeed);
   // delay(delayTime);
   // step(yMotorStep, yMotorSpeed, yMotorTotalStep);
   // delay(delayTime);
   // loweringTime = lowerArm(loweringThreshold, loweringSpeed);
   // delay(delayTime);
-  // moveHandMotor(grabbingTime, -grabbingSpeed);
-  // delay(delayTime);
+  Serial.print("Opening");
+  openingHand(grabbingThreshold, grabbingVoltage);
+  delay(delayTime);
   // movezMotor(loweringTime, -loweringSpeed);
   // delay(delayTime);
   // step(-yMotorStep, yMotorSpeed, yMotorTotalStep);

@@ -5,6 +5,7 @@
 // Pins for Sensors
 #define zSensorPin 34
 #define handSensorPin 35
+#define openingSensorPin 15
 
 // Pins for Stepping Motor of y-axis conveying
 #define yMotorPin1 26
@@ -88,6 +89,12 @@ float handSensorValue()
     return sensorvalue;
 }
 
+float openingSensorValue()
+{
+    float sensorvalue = analogRead(openingSensorPin);
+    return sensorvalue;
+}
+
 void showzSensorValue(float threshold, float period)
 {
     float sensorvalue = zSensorValue();
@@ -118,8 +125,23 @@ void showhandSensorValue(float threshold, float period)
     delay(period);
 }
 
+void showOpeningSensorValue(float threshold, float period)
+{
+    float sensorvalue = openingSensorValue();
+    Serial.print(sensorvalue);
+    if (sensorvalue <= threshold)
+    {
+        Serial.println("LOW");
+    }
+    else
+    {
+        Serial.println("HIGH");
+    }
+    delay(period);
+}
+
 // Motor commands
-void moveHandMotor(int time, int voltage)
+void moveHandMotor(int time, float voltage)
 {
     analogWrite(handMotorAnlPin, voltage * 4095 * 0.2);
     if (voltage >= 0)
@@ -133,8 +155,8 @@ void moveHandMotor(int time, int voltage)
         digitalWrite(handMotorDgtPin2, HIGH);
     }
     delay(time);
-    digitalWrite(zMotorDgtPin1, LOW);
-    digitalWrite(zMotorDgtPin2, LOW);
+    digitalWrite(handMotorDgtPin1, LOW);
+    digitalWrite(handMotorDgtPin2, LOW);
 }
 
 void movezMotor(int time, int speed)
@@ -276,25 +298,52 @@ void step(int steps_to_move, long whatSpeed, int number_of_steps)
 }
 
 // Mission sequence commands
-unsigned long grabDomino(float threshold, int speed)
+void grabDomino(float threshold, float voltage)
 {
     digitalWrite(handMotorDgtPin1, LOW);
     digitalWrite(handMotorDgtPin2, LOW);
-    analogWrite(handMotorAnlPin, speed);
-    delay(5);
+    analogWrite(handMotorAnlPin, voltage * 4095 * 0.2);
     unsigned long startTime = millis();
     unsigned long time = millis();
     float pressure = handSensorValue();
-    digitalWrite(handMotorDgtPin1, HIGH);
     while (pressure < threshold)
     {
-        delay(5);
-        unsigned long time = millis();
+        digitalWrite(handMotorDgtPin1, HIGH);
+        delay(200);
+        digitalWrite(handMotorDgtPin1, LOW);
+        time = millis();
+        Serial.print("Time =");
+        Serial.print(time - startTime);
         pressure = handSensorValue();
+        Serial.print(", Pressure =");
+        Serial.println(pressure);
+        delay(100);
     }
     digitalWrite(zMotorDgtPin1, LOW);
-    unsigned long grabbingTime = time - startTime;
-    return grabbingTime;
+}
+
+void openingHand(float threshold, float voltage)
+{
+    digitalWrite(handMotorDgtPin1, LOW);
+    digitalWrite(handMotorDgtPin2, LOW);
+    analogWrite(handMotorAnlPin, voltage * 4095 * 0.2);
+    unsigned long startTime = millis();
+    unsigned long time = millis();
+    float pressure = openingSensorValue();
+    while (pressure < threshold)
+    {
+        digitalWrite(handMotorDgtPin2, HIGH);
+        delay(200);
+        digitalWrite(handMotorDgtPin2, LOW);
+        time = millis();
+        Serial.print("Time =");
+        Serial.print(time - startTime);
+        pressure = openingSensorValue();
+        Serial.print(", Pressure =");
+        Serial.println(pressure);
+        delay(100);
+    }
+    digitalWrite(zMotorDgtPin1, LOW);
 }
 
 unsigned long lowerArm(float threshold, int speed)

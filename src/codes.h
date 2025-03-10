@@ -10,11 +10,13 @@ void bodyMotorInit();
 // Sensor commands
 float zSensorValue();
 float handSensorValue();
+float openingSensorValue();
 void showzSensorValue(float threshold, float period);
 void showhandSensorValue(float threshold, float period);
+void showOpeningSensorValue(float threshold, float period);
 
 // Motor commands
-void moveHandMotor(int time, int voltage);
+void moveHandMotor(int time, float voltage);
 void movezMotor(int time, int speed);
 void moveBodyMotor(int time, int speed);
 void stepStepper(int step);
@@ -22,7 +24,8 @@ void stepMotor(int thisStep);
 void step(int steps_to_move, long whatSpeed, int number_of_steps);
 
 // Mission sequence commands
-unsigned long grabDomino(float threshold, int speed);
+void grabDomino(float threshold, float voltage);
+void openingHand(float threshold, float voltage);
 unsigned long lowerArm(float threshold, int speed);
 
 void turnonLED(int pin, int time);
