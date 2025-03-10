@@ -34,7 +34,9 @@ unsigned long grabbingTime = 0;
 
 void loop()
 {
-  step(540, yMotorSpeed, yMotorTotalStep);
+  moveBodyMotor(500, 4095);
+  delay(delayTime);
+  moveBodyMotor(500, -4095);
   delay(delayTime);
   // moveHandMotor(500, grabbingSpeed);
   // delay(delayTime);
